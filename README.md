@@ -26,6 +26,36 @@ CHALLENGE = crucible_utils.Challenges.BEAR_1
 service = crucible_utils.ChallengeService(key=KEY, challenge=CHALLENGE)
 ```
 
+Each field in the `crucible_utils.Challenges` enum has the following structure:
+
+```python
+class ChallengeData(BaseModel):
+    name: str
+    title: str
+    teaser: str
+    difficulty: Difficulty
+    tags: List[str] = []
+    artifacts: List[str] = []
+
+    @property
+    def formatted_name(self) -> str:
+        return self.name.replace("_", "-")
+
+    @property
+    def url(self) -> str:
+        return f"https://crucible.dreadnode.io/challenges/{self.formated_name}"
+```
+
+which makes access accessing metadata straightforward. For exmaple:
+
+```python
+import crucible_utils
+
+challenge = crucible_utils.Challenges.BEAR_1
+
+print("Challenge Artifacts:", challenge.value.artifacts)
+```
+
 ### Example - Query and Submit Flag
 
 ```python
