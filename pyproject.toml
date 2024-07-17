@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 
 [project]
-name = "ctf_utils"
+name = "crucible_utils"
 version = "0.0.1"
 authors = [
     { name="Axel Mierczuk" },
@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ['src/ctf_utils']
+packages = ['src/crucible_utils']
 
 [tool.hatch.version]
 source = "vcs"
