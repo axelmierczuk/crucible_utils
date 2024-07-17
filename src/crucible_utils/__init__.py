@@ -7,4 +7,4 @@ __all__ = [
     "api",
 ]
 
-import ctf_utils.api as api
+import crucible_utils.api as api
