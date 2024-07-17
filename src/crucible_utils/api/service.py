@@ -38,7 +38,7 @@ class APIService:
 
         base_url = self._settings.crucible_url + Paths.ARTIFACT.value
         for artifact in artifacts:
-            url = base_url + f"/{self._settings.challenge}/{artifact}"
+            url = base_url + f"/{self._settings.challenge.replace('-', '_')}/{artifact}"
             headers = self._settings.authorization_header
             response = requests.get(url, headers=headers)
             if response.status_code == 200:

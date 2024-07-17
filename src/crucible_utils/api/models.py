@@ -35,7 +35,7 @@ class APISettings(BaseModel):
         return {"Authorization": self.key}
 
     def challenge_submission(self, flag: str) -> ChallengeSubmission:
-        return ChallengeSubmission(challenge=self.challenge, flag=flag)
+        return ChallengeSubmission(challenge=self.challenge.replace("-", "_"), flag=flag)
 
     def score_submission(self, data: str) -> ScoreSubmission:
         return ScoreSubmission(data=data)
