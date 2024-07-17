@@ -58,6 +58,14 @@ The `ChallengeService` has the following functions available:
 | `query`          | Takes some `data` as input and returns `FlagData` based on the response from the server. May raise a `ResponseError` exception for invalid responses from the server.                                                                                                                                   |
 | `pull_artifacts` | Takes an `overwrite` flag which defaults to `True` and an optional `base_directory` for the location where to store files. Downloads and saves files to the current directory unless `base_directory` is defined, and will only write files if `overwrite` is `True` or if the file does not exist yet. |
 
+### Example - Print all Challenges
+
+
+```python
+import crucible_utils
+
+crucible_utils.Challenges.show_challenges()
+```
 
 
 ## Available Challenges
