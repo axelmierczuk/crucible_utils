@@ -5,7 +5,7 @@ A Python package to help automate simple tasks for Crucible (https://crucible.dr
 ## Installation 
 
 ```bash
-pip install git+https://github.com/axelmierczuk/crucible_utils.git
+pip install git+https://github.com/axelmierczuk/crucible_utils.git@main
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ a cell:
 ```python
 try:
     import crucible_utils
-except Exception as e:
-    %pip install git+https://github.com/axelmierczuk/crucible_utils.git
+except ModuleNotFoundError:
+    %pip install git+https://github.com/axelmierczuk/crucible_utils.git@main
     raise Exception("Restart your kernel!")
 
 CRUCIBLE_API_KEY = "<EXAMPLE>"
