@@ -22,10 +22,8 @@ class APIService:
 
     def query(self, data: SubmissionType) -> FlagData:
         url = self._settings.challenge_url + Paths.SCORE.value
-        submission = self._settings.score_submission(data=data).model_dump()
         headers = self._settings.authorization_header
-
-        response = requests.post(url, headers=headers, json=submission)
+        response = requests.post(url, headers=headers, json=data)
         if response.status_code != 200:
             raise ResponseError(response.text)
         return FlagData(**response.json())

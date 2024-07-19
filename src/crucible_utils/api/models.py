@@ -13,10 +13,6 @@ class ChallengeSubmission(BaseModel):
     flag: str
 
 
-class ScoreSubmission(BaseModel):
-    data: SubmissionType
-
-
 class FlagData(BaseModel):
     flag: str
 
@@ -40,9 +36,6 @@ class APISettings(BaseModel):
 
     def challenge_submission(self, flag: str) -> ChallengeSubmission:
         return ChallengeSubmission(challenge=self.challenge.replace("-", "_"), flag=flag)
-
-    def score_submission(self, data: SubmissionType) -> ScoreSubmission:
-        return ScoreSubmission(data=data)
 
 
 class Paths(Enum):
