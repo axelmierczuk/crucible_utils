@@ -2,7 +2,7 @@ import os.path
 from typing import List, Optional
 
 import requests
-from .models import APISettings, Paths, FlagData, SubmissionType
+from .models import APISettings, Paths, SubmissionType
 from .exceptions import ResponseError
 
 
@@ -20,13 +20,13 @@ class APIService:
             raise ResponseError(response.text)
         return response.json().get("correct")
 
-    def query(self, data: SubmissionType) -> FlagData:
+    def query(self, data: SubmissionType):
         url = self._settings.challenge_url + Paths.SCORE.value
         headers = self._settings.authorization_header
         response = requests.post(url, headers=headers, json=data)
         if response.status_code != 200:
             raise ResponseError(response.text)
-        return FlagData(**response.json())
+        return response.json()
 
     def pull_artifacts(self, artifacts: List[str], overwrite: bool = True, base_directory: Optional[str] = None):
         location = ""

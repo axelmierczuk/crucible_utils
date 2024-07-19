@@ -13,10 +13,6 @@ class ChallengeSubmission(BaseModel):
     flag: str
 
 
-class FlagData(BaseModel):
-    flag: str
-
-
 class APISettings(BaseModel):
     key: str
     base_domain: str = _BASE_DOMAIN

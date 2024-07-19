@@ -65,8 +65,9 @@ CHALLENGE = crucible_utils.Challenges.BEAR_1
 
 service = crucible_utils.ChallengeService(key=KEY, challenge=CHALLENGE)
 
+
 response = service.query({"data": "help?"})
-service.submit_flag(flag=response.flag)
+service.submit_flag(flag=response.get('flag'))
 ```
 
 ### Example - Pull Artifacts
@@ -85,7 +86,7 @@ The `ChallengeService` has the following functions available:
 | Function         | Description                                                                                                                                                                                                                                                                                             |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `submit_flag`    | Takes a `flag` as input and returns a boolean based on the response from the server. May raise a `ResponseError` exception for invalid responses from the server.                                                                                                                                       |
-| `query`          | Takes some `data` as input and returns `FlagData` based on the response from the server. May raise a `ResponseError` exception for invalid responses from the server.                                                                                                                                   |
+| `query`          | Takes some `data` as input and returns the response from the server. May raise a `ResponseError` exception for invalid responses from the server.                                                                                                                                                       |
 | `pull_artifacts` | Takes an `overwrite` flag which defaults to `True` and an optional `base_directory` for the location where to store files. Downloads and saves files to the current directory unless `base_directory` is defined, and will only write files if `overwrite` is `True` or if the file does not exist yet. |
 
 ### Example - Print all Challenges
