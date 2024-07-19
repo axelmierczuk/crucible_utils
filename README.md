@@ -65,7 +65,7 @@ CHALLENGE = crucible_utils.Challenges.BEAR_1
 
 service = crucible_utils.ChallengeService(key=KEY, challenge=CHALLENGE)
 
-response = service.query("help?")
+response = service.query({"data": "help?"})
 service.submit_flag(flag=response.flag)
 ```
 
