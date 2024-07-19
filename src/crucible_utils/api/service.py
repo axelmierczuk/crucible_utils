@@ -37,7 +37,7 @@ class APIService:
         base_url = self._settings.crucible_url + Paths.ARTIFACT.value
         for artifact in artifacts:
             file_path = os.path.join(location, artifact)
-            if not overwrite and os.path.exists(file_path):
+            if overwrite or not os.path.exists(file_path):
                 url = base_url + f"/{self._settings.challenge.replace('-', '_')}/{artifact}"
                 headers = self._settings.authorization_header
                 response = requests.get(url, headers=headers)
