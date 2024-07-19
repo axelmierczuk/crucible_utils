@@ -39,7 +39,7 @@ class ChallengeData(BaseModel):
 class Challenges(Enum):
     BEAR_1 = ChallengeData(name="bear1", title="Bear 1 - Data Exploration", teaser="What is the bear data trying to tell us?", difficulty=Difficulty.EASY, tags=["data"], artifacts=["bear.csv"])
     BEAR_2 = ChallengeData(name="bear2", title="Bear 2 - Model Extraction", teaser="What does it take to reverse a basic model?", difficulty=Difficulty.EASY, tags=["data"], artifacts=[])
-    BEAR_3 = ChallengeData(name="bear3", title="Bear 3 - Model Fingerprinting", teaser="How do you detect the specific bear image classifier?", difficulty=Difficulty.EASY, tags=["model fingerprinting"], artifacts=["brown_bear.png"])
+    BEAR_3 = ChallengeData(name="bear3", title="Bear 3 - Model Fingerprinting", teaser="How do you detect the specific bear image classifier?", difficulty=Difficulty.EASY, tags=["model fingerprinting"], artifacts=["brown_bear.png", "ping_pong.png"])
     BEAR_4 = ChallengeData(name="bear4", title="Bear 4 - Prompt Injection", teaser="Can you get the LLM to reveal the true bear name?", difficulty=Difficulty.EASY, tags=["intro", "llm", "prompt", "engineering"], artifacts=[])
     
     BRIG_1 = ChallengeData(name="brig1", title="Brig 1 - Escape the Classifier", teaser="Maybe giving LLMs access to bash was a bad idea?", difficulty=Difficulty.MEDIUM, tags=["llm", "escape"], artifacts=[])
