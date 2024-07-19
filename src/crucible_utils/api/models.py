@@ -1,7 +1,11 @@
 from enum import Enum
+from typing import Dict, Union, List
+
 from pydantic import BaseModel
 
 _BASE_DOMAIN = "crucible.dreadnode.io"
+
+SubmissionType = Union[bool, str, int, float, type(None), List, Dict]
 
 
 class ChallengeSubmission(BaseModel):
@@ -10,7 +14,7 @@ class ChallengeSubmission(BaseModel):
 
 
 class ScoreSubmission(BaseModel):
-    data: str
+    data: SubmissionType
 
 
 class FlagData(BaseModel):
@@ -37,7 +41,7 @@ class APISettings(BaseModel):
     def challenge_submission(self, flag: str) -> ChallengeSubmission:
         return ChallengeSubmission(challenge=self.challenge.replace("-", "_"), flag=flag)
 
-    def score_submission(self, data: str) -> ScoreSubmission:
+    def score_submission(self, data: SubmissionType) -> ScoreSubmission:
         return ScoreSubmission(data=data)
 
 

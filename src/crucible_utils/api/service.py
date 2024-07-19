@@ -2,7 +2,7 @@ import os.path
 from typing import List, Optional
 
 import requests
-from .models import APISettings, Paths, FlagData
+from .models import APISettings, Paths, FlagData, SubmissionType
 from .exceptions import ResponseError
 
 
@@ -20,7 +20,7 @@ class APIService:
             raise ResponseError(response.text)
         return response.json().get("correct")
 
-    def query(self, data: str) -> FlagData:
+    def query(self, data: SubmissionType) -> FlagData:
         url = self._settings.challenge_url + Paths.SCORE.value
         submission = self._settings.score_submission(data=data).model_dump()
         headers = self._settings.authorization_header
@@ -38,15 +38,15 @@ class APIService:
 
         base_url = self._settings.crucible_url + Paths.ARTIFACT.value
         for artifact in artifacts:
-            url = base_url + f"/{self._settings.challenge.replace('-', '_')}/{artifact}"
-            headers = self._settings.authorization_header
-            response = requests.get(url, headers=headers)
-            if response.status_code == 200:
-                file_path = os.path.join(location, artifact)
-                if not overwrite and os.path.exists(file_path):
-                    print(f"Will not be overwriting artifact {artifact}")
-                    
-                with open(file_path, "wb") as file:
-                    file.write(response.content)
+            file_path = os.path.join(location, artifact)
+            if not overwrite and os.path.exists(file_path):
+                url = base_url + f"/{self._settings.challenge.replace('-', '_')}/{artifact}"
+                headers = self._settings.authorization_header
+                response = requests.get(url, headers=headers)
+                if response.status_code == 200:
+                    with open(file_path, "wb") as file:
+                        file.write(response.content)
+                else:
+                    print(f"Failed to download {artifact}")
             else:
-                print(f"Failed to download {artifact}")
+                print(f"Will not be overwriting artifact {artifact}")

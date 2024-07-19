@@ -2,7 +2,7 @@ from enum import Enum
 from typing import List, Optional
 from pydantic import BaseModel
 import crucible_utils.api as api
-from crucible_utils.api.models import FlagData
+from crucible_utils.api.models import FlagData, SubmissionType
 
 
 class Difficulty(Enum):
@@ -105,7 +105,7 @@ class ChallengeService:
     def submit_flag(self, flag: str) -> bool:
         return self._service.submit_flag(flag=flag)
 
-    def query(self, data: str) -> FlagData:
+    def query(self, data: SubmissionType) -> FlagData:
         return self._service.query(data=data)
 
     def pull_artifacts(self, overwrite: bool = True, base_directory: Optional[str] = None):
